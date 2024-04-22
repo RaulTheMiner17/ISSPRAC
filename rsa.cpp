@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
-#include <stdlib.h>
+#include <vector>
+#include <sstream>
+
 using namespace std;
 
 int gcd(int a, int b) {
@@ -27,8 +29,8 @@ int gcd(int a, int b) {
 
 int main() {
     double p, q, n, phin, d, e = 0, k = 2;
-    string message, encryptedText = "";
-    int asciiValue = 0, encryptedTextNumber = 0;
+    string message;
+    vector<int> encryptedText; // Store individual ASCII values
 
     cout << "Enter the value of p: ";
     cin >> p;
@@ -46,7 +48,7 @@ int main() {
 
     e = gcd(p, q);
 
-    cout <<"\nValue of e: " << e;
+    cout << "\nValue of e: " << e;
 
     d = ((k * phin) + 1) / e;
 
@@ -56,12 +58,17 @@ int main() {
     cin >> message;
 
     for (char ch : message) {
-        asciiValue = (int)ch;
-        encryptedText.append(to_string(asciiValue));
+        encryptedText.push_back((int)ch); // Store each ASCII value separately
     }
 
-     encryptedTextNumber = stoi(encryptedText);
+    // Output the encryptedText vector
+    cout << "\nEncrypted Text (ASCII values): ";
+    for (int value : encryptedText) {
+        cout << value << " ";
+    }
+    cout << endl;
 
-
+    return 0;
 }
+
 
